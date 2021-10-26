@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Google Meet alert on Exit Extension",
+  "version": "1.0.0",
+  "description": "Display on alert while you're about to leave a google meet room",
+  "short_name": "GM Alert on Exit",
+  "permissions": ["activeTab", "declarativeContent", "storage", "<all_urls>"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://meet.google.com/*-*-*"],
+      "css": ["background.css"],
+      "js": ["contentscript.js"]
+    }
+  ],
+  "browser_action": {
+    "default_title": "Does a thing when you do a thing",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "512": "icons/icon512.png"
+    }
+  },
+  "icons": {
+    "512": "icons/icon512.png"
+  }
+}
