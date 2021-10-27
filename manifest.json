@@ -5,13 +5,9 @@
   "description": "Display on alert while you're about to leave a google meet room",
   "short_name": "GM Alert on Exit",
   "permissions": [],
-  "background": {
-    "scripts": ["background.js"]
-  },
   "content_scripts": [
     {
       "matches": ["https://meet.google.com/*-*-*"],
-      "css": ["background.css"],
       "js": ["contentscript.js"]
     }
   ],
