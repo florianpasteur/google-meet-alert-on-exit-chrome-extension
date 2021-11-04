@@ -6,7 +6,7 @@ This extension will alter the normal behaviour of google meet, use at your own r
 
 ## How it works ? 
 When leaving a google meet call, it will display a confirmation dialog. At this point you're not in the call anymore. 
-- If you click **leave** it will close the page or open the new depending on which action made you left the call.
+- If you click **leave** it will close the page or open the new page depending on which action made you leave the call.
 - If you click **cancel** the extension will reload the page and rejoin automatically the call. **Be aware of that**
 
 
