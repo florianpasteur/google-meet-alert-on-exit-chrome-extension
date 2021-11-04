@@ -12,15 +12,16 @@ function findElementByText(text, searchStart = document.body, _document = docume
 }
 
 window.onbeforeunload = function(event){
-    event.preventDefault();
-    console.log(event);
+    if (findElementByText('You')) {
+        event.preventDefault();
+        console.log(event);
 
-    setInterval(() => {
-        window.onbeforeunload = null;
-        window.location.href = window.location.href + '?rejoin=true'
-    }, 100);
-
-    return event.returnValue = `You're about to leave the meeting`;
+        setInterval(() => {
+             window.onbeforeunload = null;
+             window.location.href = window.location.href + '?rejoin=true';
+         }, 100);
+        event.returnValue = `You're about to leave the meeting`;
+    }
 };
 
 
@@ -32,7 +33,7 @@ if (window.location.href.indexOf('rejoin=true') >= 0) {
             findElementByText('Join now').click();
             clearInterval(watchProcess);
         }
-        if (nbOfAttempt++ < 25) {
+        if (nbOfAttempt++ > 25) {
             clearInterval(watchProcess);
         }
 
