@@ -1,6 +1,13 @@
 # Google Meet alert on exit chrome extension
 
-This chrome extension will display a confirm dialog when closing or leaving a google meet room. The extension won't prevent to quit the call, however you'll be able to keep the tab opened with the google meet room link.
+## Disclaimer
+
+This extension will alter the normal behaviour of google meet, use at your own risk. 
+
+## How it works ? 
+When leaving a google meet call, it will display a confirmation dialog. At this point you're not in the call anymore. 
+- If you click **leave** it will close the page or open the new depending on which action made you left the call.
+- If you click **cancel** the extension will reload the page and rejoin automatically the call. **Be aware of that**
 
 
 # Screenshot
