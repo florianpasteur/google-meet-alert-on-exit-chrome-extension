@@ -18,25 +18,34 @@ window.onbeforeunload = function(event){
 
         setInterval(() => {
              window.onbeforeunload = null;
-             window.location.href = window.location.href + '?rejoin=true';
-         }, 100);
+             localStorage.setItem(window.location.href, new Date().getTime().toString());
+             window.location.reload();
+        }, 100);
         event.returnValue = `You're about to leave the meeting`;
     }
 };
 
 
-if (window.location.href.indexOf('rejoin=true') >= 0) {
-    let nbOfAttempt = 0;
-    console.log("Trying to rejoin");
-    let watchProcess = setInterval(() => {
-        if (!findElementByText('Getting ready...')) {
-            findElementByText('Join now').click();
-            clearInterval(watchProcess);
-        }
-        if (nbOfAttempt++ > 25) {
-            clearInterval(watchProcess);
-        }
+if (localStorage.getItem(window.location.href)) {
+    const refreshTimeAsked = parseInt(localStorage.getItem(window.location.href));
+    localStorage.removeItem(window.location.href);
 
-        console.log(".");
-    }, 250);
+    // 1 min to reload otherwise we ignore entering in the room
+    if (refreshTimeAsked > new Date().getTime() - 1000 * 60) {
+        let nbOfAttempt = 0;
+        console.log("Trying to rejoin");
+        let watchProcess = setInterval(() => {
+            if (!findElementByText('Getting ready...')) {
+                findElementByText('Join now').click();
+                clearInterval(watchProcess);
+            }
+            if (nbOfAttempt++ > 25) {
+                clearInterval(watchProcess);
+            }
+
+            console.log(".");
+        }, 250);
+    } else {
+        console.log("Timeout expired to re enter room")
+    }
 }
