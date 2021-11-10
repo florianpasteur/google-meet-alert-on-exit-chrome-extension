@@ -11,15 +11,16 @@ function findElementByText(text, searchStart = document.body, _document = docume
         .iterateNext();
 }
 
-window.onbeforeunload = function(event){
+window.onbeforeunload = function (event) {
     if (findElementByText('You')) {
         event.preventDefault();
         console.log(event);
 
-        setInterval(() => {
-             window.onbeforeunload = null;
-             localStorage.setItem(window.location.href, new Date().getTime().toString());
-             window.location.reload();
+        setTimeout(() => {
+            alert("Click ok to rejoin");
+            window.onbeforeunload = null;
+            localStorage.setItem(window.location.href, new Date().getTime().toString());
+            window.location.reload();
         }, 100);
         event.returnValue = `You're about to leave the meeting`;
     }
